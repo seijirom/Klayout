@@ -1,4 +1,5 @@
 # coding: utf-8
+klayout_drc_version ='klayout v0.2: 2019/6/25'
 count = nil
 overlap = nil
 while l=gets
@@ -70,7 +71,7 @@ EOL
   end
   
   if l=~/^# ver1.31/ #!!!!! please change this part for newer Glade DRC file
-    puts '#' + l + '# klayout v0.2: 2019/6/25: seijiro.moriyama@anagix.com'
+    puts '#' + l + "# #{klayout_drc_version}: seijiro.moriyama@anagix.com"
     puts 'report("Output database")'
   elsif l=~/^print "(.*)"/
     puts "puts '#{$1}'"
@@ -127,4 +128,5 @@ EOL
   else
     puts l
   end
+  puts "Finished"
 end
