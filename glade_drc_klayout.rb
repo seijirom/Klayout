@@ -124,7 +124,11 @@ EOL
     puts "#{$1.downcase}.output(#{$2})"
   elsif l=~/geomArea\(geomAnd\((\S+), *(\S+)\), 4, 4, *(\".*\")\)/ 
     puts '# ' + l.chomp + " =>\n"
-    puts "#{$1.downcase}_ns = #{$1.downcase}.not_in(#{$2.downcase}); #{$1.downcase}_ns.output(#{$3})"
+    if $1 == 'via1' and $2 == 'via2' # check via2 not in via1 instead of via1 not in via2
+      puts "#{$1.downcase}_ns = #{$1.downcase}.not_in(#{$2.downcase}); #{$1.downcase}_ns.output(#{$3})"
+    else
+      puts "#{$1.downcase}_ns = #{$1.downcase}.not_in(#{$2.downcase}); #{$1.downcase}_ns.output(#{$3})"
+    end
   else
     puts l
   end
